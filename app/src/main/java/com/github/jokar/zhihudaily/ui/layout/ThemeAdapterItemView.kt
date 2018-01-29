@@ -13,7 +13,7 @@ import org.jetbrains.anko.cardview.v7.cardView
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 /**
- * Created by JokAr on 2017/7/17.
+ * 在Adapter里使用Anko
  */
 object ThemeAdapterItemView {
 

@@ -17,9 +17,16 @@ import dagger.android.support.DaggerApplication
  */
 class MyApplication : DaggerApplication(), HasActivityInjector {
 
+//    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//    }
+
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
             DaggerAppComponent.builder().application(this).build()
 
+//    MyApplication.Companion.getNetComponent()
+    //MyApplication.getNetComponent()
+    //静态变量
     companion object {
         private var NETCOMPONENT: NetworkComponent? = null
 

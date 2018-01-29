@@ -17,8 +17,7 @@ class ThemePresenter @Inject constructor(var model: ThemeModel?,
     : BasePresenter {
 
 
-    fun getTheme(id: Int,
-                 @NonNull lifecycle: LifecycleOwner) {
+    fun getTheme(id: Int, @NonNull lifecycle: LifecycleOwner) {
         model?.getTheme(id, lifecycle, SingleDataViewCallBack(view))
     }
 

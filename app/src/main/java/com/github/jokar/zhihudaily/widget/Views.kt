@@ -8,7 +8,15 @@ import com.rd.PageIndicatorView
 import org.jetbrains.anko.custom.ankoView
 
 /**
- * Created by JokAr on 2017/7/17.
+ * 高级用法 - 如何使用自定义view
+ * 怎么把自己的自定义控件使用到anko中呢
+ * 1.首先创建一个Views.kt文件
+ * 2.在该文件中添加下面代码
+ * inline fun ViewManager.customizeView(theme: Int = 0) = customizeView(theme) {}
+ * inline fun ViewManager.customizeView(theme: Int = 0, init: CustomizeView.() -> Unit) = ankoView({ CustomizeView(it) }, theme, init)
+ *  这里的```CustomizeView```是你的自定义View
+ *  这里的```customizeView```是你用在anko里的名称，一般就是自定义view的名称，首字母小写这样的写法
+ * 3.然后就可以在anko里这样使用了customizeView{}
  */
 inline fun ViewManager.likeButton(theme: Int = 0) = likeButton(theme) {}
 

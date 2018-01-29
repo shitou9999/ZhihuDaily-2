@@ -4,6 +4,7 @@ import android.arch.lifecycle.Lifecycle
 import android.support.annotation.NonNull
 import android.support.v7.app.AppCompatActivity
 import com.github.jokar.zhihudaily.di.component.model.DaggerCollectionModelComponent
+import com.github.jokar.zhihudaily.di.component.network.DaggerNewsComponent
 import com.github.jokar.zhihudaily.di.component.room.DaggerAppDatabaseComponent
 import com.github.jokar.zhihudaily.di.module.room.AppDatabaseModule
 import com.github.jokar.zhihudaily.model.entities.story.StoryEntity
@@ -24,6 +25,21 @@ class CollectionModel(var activity: AppCompatActivity) {
 
     @Inject
     lateinit var mDatabaseHelper: AppDatabaseHelper
+    /*
+    @Module
+    class AppDatabaseModule(var context: Context) {
+        @Provides
+        fun dataBaseProvider(): AppDatabaseHelper {
+            return AppDatabaseHelper.getInstance(context)
+        }
+    }
+
+    @Component(modules = arrayOf(AppDatabaseModule::class))
+    interface AppDatabaseComponent {
+            fun appDataBase(): AppDatabaseHelper
+
+     }
+     */
 
     init {
         val component = DaggerAppDatabaseComponent.builder()
@@ -34,13 +50,13 @@ class CollectionModel(var activity: AppCompatActivity) {
                 .appDatabaseComponent(component)
                 .build()
                 .inject(this)
+
     }
 
     /**
      * 获取所有收藏的story
      */
     fun getCollectionsStories(@NonNull callBack: ListDataCallBack<StoryEntity>) {
-
         Observable.create(ObservableOnSubscribe<ArrayList<StoryEntity>> { e ->
             var arrayList = mDatabaseHelper.getCollectionsStories()
             if (arrayList == null) {

@@ -10,6 +10,9 @@ import dagger.android.AndroidInjector
  */
 @Subcomponent(modules = arrayOf(CollectionPresenterModule::class))
 interface CollectionSubComponent : AndroidInjector<CollectionActivity> {
+
     @Subcomponent.Builder
     abstract class Builder : AndroidInjector.Builder<CollectionActivity>()
+
+
 }

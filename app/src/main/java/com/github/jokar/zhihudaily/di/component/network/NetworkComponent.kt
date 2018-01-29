@@ -11,5 +11,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(NetworkModule::class))
 interface NetworkComponent {
+
     fun retrofit():Retrofit
+
 }

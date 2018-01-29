@@ -39,6 +39,7 @@ import kotlin.collections.ArrayList
 class MainFragmentModel(var fragment: Fragment) {
 
     val TODAYSNEWS = "今日热闻"
+
     @Inject
     lateinit var retrofit: Retrofit
 
@@ -88,15 +89,14 @@ class MainFragmentModel(var fragment: Fragment) {
         calendar = null
 
         Observable.create(ObservableOnSubscribe<LatestStory> { e ->
-
             //先检测本地是否有
             var latestStory = LatestStory(date, null, null)
+            //根据时间获取story
             var stories: ArrayList<StoryEntity>? = mDatabaseHelper.getStoryByDate(date)
             var topStories: ArrayList<TopStoryEntity>? = mDatabaseHelper.getTopStoryByDate(date)
 
             //本地有就直接返回本地数据
             if (stories != null && stories.size > 0) {
-
                 //添加时间标题
                 var timeTitle = StoryEntity(0)
                 timeTitle.date = date
@@ -115,22 +115,21 @@ class MainFragmentModel(var fragment: Fragment) {
             }
 
             e.onNext(latestStory)
-        })
-                .filter { t ->
-                    if (t.stories != null && t.top_stories != null) {
-                        t.stories?.forEach {
-                            it.dateString = TODAYSNEWS
-                        }
-                        callBack.data(t)
-                        callBack.onComplete()
-                        return@filter false
-                    }
-                    return@filter true
+
+        }).filter { t ->
+            if (t.stories != null && t.top_stories != null) {
+                t.stories?.forEach {
+                    it.dateString = TODAYSNEWS
                 }
-                .flatMap {
-                    latestService.getStories()
-                }
-                .bindUntilEvent(fragment, Lifecycle.Event.ON_DESTROY)
+                callBack.data(t)
+                callBack.onComplete()
+                return@filter false
+            }
+            return@filter true
+        }.flatMap {
+            //获取最新消息
+            latestService.getStories()
+        }.bindUntilEvent(fragment, Lifecycle.Event.ON_DESTROY)
                 .compose(SchedulersUtil.applySchedulersIO())
                 .map { latestStory ->
                     //遍历，赋值时间
@@ -171,43 +170,40 @@ class MainFragmentModel(var fragment: Fragment) {
     /**
      * 获取过往的story
      */
-    fun getBeforeStory(date: Long,
-                       @NonNull callBack: ListDataCallBack<StoryEntity>) {
+    fun getBeforeStory(date: Long, @NonNull callBack: ListDataCallBack<StoryEntity>) {
 
         checkNotNull(callBack)
 
         Observable.create(ObservableOnSubscribe<ArrayList<StoryEntity>> { e ->
             //先检测本地是否有
             var beforeDate = DateUtils.getBeforeDate(date)
-
+            //根据时间获取story
             val stories: ArrayList<StoryEntity>? = mDatabaseHelper.getStoryByDate(beforeDate)
             //本地有就直接返回本地数据
             if (stories != null && stories.size > 0) {
-
                 //添加时间标题
                 var timeTitle = StoryEntity(0)
                 timeTitle.date = beforeDate
                 timeTitle.dateString = DateUtils.judgmentTime(beforeDate)
                 stories.add(0, timeTitle)
+
                 e.onNext(stories)
                 e.onComplete()
             } else {
                 //本地没有再请求网络
                 e.onNext(ArrayList())
             }
-        })
-                .filter { t ->
-                    if (t.size > 0) {
-                        callBack.data(t)
-                        callBack.onComplete()
-                        return@filter false
-                    }
-                    return@filter true
-                }
-                .flatMap {
-                    beforeService.getStories(date)
-                }
-                .bindUntilEvent(fragment, Lifecycle.Event.ON_DESTROY)
+        }).filter { t ->
+            if (t.size > 0) {
+                callBack.data(t)
+                callBack.onComplete()
+                return@filter false
+            }
+            return@filter true
+        }.flatMap {
+            //获取过往消息
+            beforeService.getStories(date)
+        }.bindUntilEvent(fragment, Lifecycle.Event.ON_DESTROY)
                 .compose(SchedulersUtil.applySchedulersIO())
                 .map { (date, stories) ->
                     //遍历，赋值时间

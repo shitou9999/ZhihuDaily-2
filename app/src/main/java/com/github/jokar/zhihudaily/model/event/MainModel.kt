@@ -19,13 +19,13 @@ import javax.inject.Inject
  * Created by JokAr on 2017/6/15.
  */
 class MainModel {
+
     @Inject
     lateinit var retrofit: Retrofit
     @Inject
     lateinit var mServices: ThemesServices
 
     init {
-
         DaggerThemesComponent.builder()
                 .networkComponent(MyApplication.getNetComponent())
                 .themesModule(ThemesModule())
@@ -38,7 +38,6 @@ class MainModel {
      */
     fun getThemes(@NonNull lifecycle: LifecycleOwner,
                   @NonNull callBack: ListDataCallBack<MainMenu>) {
-
 
         checkNotNull(callBack)
 

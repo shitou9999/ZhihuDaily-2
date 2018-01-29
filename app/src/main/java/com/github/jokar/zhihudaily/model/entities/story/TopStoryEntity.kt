@@ -17,10 +17,12 @@ data class TopStoryEntity(
     constructor() : this(0)
 
     @ColumnInfo(name = "image")
-    @SerializedName("image") var image: String = ""
+    @SerializedName("image")
+    var image: String = ""
 
     @ColumnInfo(name = "title")
-    @SerializedName("title") var title: String? = null
+    @SerializedName("title")
+    var title: String? = null
 
     @ColumnInfo(name = "date")
     var date: Long = 0

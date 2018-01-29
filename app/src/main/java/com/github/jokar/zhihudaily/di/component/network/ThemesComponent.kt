@@ -12,5 +12,7 @@ import dagger.Component
 @Component(dependencies = arrayOf(NetworkComponent::class),
         modules = arrayOf(ThemesModule::class))
 interface ThemesComponent {
+
     fun inject(model: MainModel)
+
 }

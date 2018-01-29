@@ -1,0 +1,64 @@
+
+
+使用anko 抛弃XML
+anko 是一款结合kotlin语言抛弃布局xml的工具，使用他就可以不用写布局xml代码了
+var edit: EditText? = null
+var string = edit?.text.toString()
+
+Kotlin的函数可以作为参数，写callback的时候，可以不用interface了
+// 声明一个callback
+var callback: (()->Unit)? = null
+// 判断并使用
+callback?.invoke()
+
+// 想带参数
+var callback: ((str: String)->Unit)? = null
+// 判断并使用
+callback?.invoke(str)
+
+// set callback
+item.callback = {
+    // do something
+}
+// 带参数的callback
+item.callback = {
+    doSomething(it)
+}
+
+java泛型
+泛型，即 参数化类型。将类型参数化，可以用在类，接口，方法上。作用是用于规范类型。用在类上时：
+class Box<T>{
+
+}
+用在接口：
+interface Box<T>{
+
+}
+用在方法,<T>用于声明泛型：
+<T> T read(T t){
+
+}
+通配符：
+class Box<?>{
+
+}
+此处,?可表示任何类型，同时，通配符分为通配符上限和通配符下限。
+通配符上限是指参数只能是某个类或子类，如限定类型只能为String类或其子类：
+public void display(Box<? extends String> box){
+
+}
+通配符上限指参数只能是某个类或该类型是其父类，如：
+public void display(Box<? super String> box){
+
+}
+kotlin泛型
+泛型定义与java类似，如在类上定义泛型时：
+data class User<T> constructor(var name:String,age:Int,t:T){
+
+}
+
+fun main(arg:Array<String>){
+    var user = User<String>("jason",12,"") //T此处为String，传入String类型的参数
+}
+covariant表示参数只能是被用作read，只能用在方法的返回值，使用out符号进行修饰，如<out T>，表示类型为T或T的子类
+使用 in 符号修饰参数类型，表示只能被用作方法的参数，被操作，而不能作为返回值使用:<in T>

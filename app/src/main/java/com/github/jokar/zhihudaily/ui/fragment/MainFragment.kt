@@ -154,8 +154,9 @@ class MainFragment : LazyFragment(), StoryView {
      * 加载完成
      */
     override fun loadComplete() {
-        activity.runOnUiThread { SwipeRefreshLayoutUtil.setRefreshing(swipeRefreshLayout, false) }
-
+        activity.runOnUiThread {
+            SwipeRefreshLayoutUtil.setRefreshing(swipeRefreshLayout, false)
+        }
     }
 
     /**

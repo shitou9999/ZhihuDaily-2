@@ -47,7 +47,7 @@ class MainActivity : BaseActivity(), MainView, HasSupportFragmentInjector {
             context.startActivity(intent)
         }
     }
-
+    /**你用它告诉Dagger这个类或者字段需要依赖注入*/
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
@@ -55,6 +55,7 @@ class MainActivity : BaseActivity(), MainView, HasSupportFragmentInjector {
         return fragmentInjector
     }
 
+    //@Inject带有此注解的属性或构造方法将参与到依赖注入中，Dagger2会实例化有此注解的类
     @Inject
     lateinit var presenter: MainPresenter
 

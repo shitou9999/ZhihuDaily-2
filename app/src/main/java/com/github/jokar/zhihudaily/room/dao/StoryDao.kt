@@ -7,7 +7,10 @@ import android.arch.persistence.room.Update
 import com.github.jokar.zhihudaily.model.entities.story.StoryEntity
 
 /**
- * Created by JokAr on 2017/6/30.
+ * 【坑3】, 方法返回类型不能用ArrayList 他会识别不了，用List就好了
+ * 【坑4】: insert 的返回值 不能是 Long _impl 生成的是 long 和 kotlin 的Long 类型对不上， 可以用 List 解决这种尴尬；
+ * fun insertEntity(vararg entity: UserDBEntity): List
+ *  insert 的返回值 不能是 Long _impl 生成的是 long 和 kotlin 的Long 类型对不上， 可以用 List 解决
  */
 @Dao
 interface StoryDao {

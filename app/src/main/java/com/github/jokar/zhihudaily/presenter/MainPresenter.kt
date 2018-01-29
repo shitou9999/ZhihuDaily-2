@@ -15,14 +15,15 @@ import javax.inject.Inject
 class MainPresenter @Inject constructor(var mainModel: MainModel?, var view: MainView?)
     : BasePresenter {
 
+    /**
+     * Model中获取当前主题
+     */
     fun getThemes(@NonNull lifecycle: LifecycleOwner) {
-
-        mainModel?.getThemes(lifecycle,
-                object : ListDataCallBack<MainMenu> {
-                    override fun data(data: ArrayList<MainMenu>) {
-                        view?.loadThemes(data)
-                    }
-                })
+        mainModel?.getThemes(lifecycle, object : ListDataCallBack<MainMenu> {
+            override fun data(data: ArrayList<MainMenu>) {
+                view?.loadThemes(data)
+            }
+        })
     }
 
     override fun destroy() {

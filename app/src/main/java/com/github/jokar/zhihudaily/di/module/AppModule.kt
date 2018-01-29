@@ -8,7 +8,8 @@ import dagger.Provides
 
 
 /**
- * Created by JokAr on 2017/6/15.
+ * @Modules 组成该组件，如果缺失了任何一块都会在编译的时候报错。
+ * 所有的组件都可以通过它的modules知道依赖的范围
  */
 @Module(subcomponents = arrayOf(MainSubComponent::class,
         MainFragmentSubComponent::class,
@@ -17,7 +18,9 @@ import dagger.Provides
         CollectionSubComponent::class,
         SettingSubComponent::class))
 class AppModule {
-
+    /**
+     * 提供全局的context
+     */
     @Provides
     fun contextProvider(application: MyApplication): Context {
         return application.applicationContext

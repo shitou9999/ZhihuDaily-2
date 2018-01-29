@@ -7,8 +7,7 @@ import com.github.jokar.zhihudaily.utils.system.JLog
  * Created by JokAr on 2017/6/23.
  */
 object SwipeRefreshLayoutUtil {
-    fun setRefreshing(swipeRefreshLayout: SwipeRefreshLayout?,
-                      refreshing: Boolean) {
+    fun setRefreshing(swipeRefreshLayout: SwipeRefreshLayout?,refreshing: Boolean) {
         try {
             swipeRefreshLayout?.post { swipeRefreshLayout.isRefreshing = refreshing }
         } catch (e: Exception) {

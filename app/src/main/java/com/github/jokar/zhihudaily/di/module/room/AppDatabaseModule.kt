@@ -15,4 +15,5 @@ class AppDatabaseModule(var context: Context) {
     fun dataBaseProvider(): AppDatabaseHelper {
         return AppDatabaseHelper.getInstance(context)
     }
+
 }

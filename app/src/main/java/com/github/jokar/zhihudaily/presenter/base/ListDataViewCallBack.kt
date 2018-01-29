@@ -7,6 +7,7 @@ import com.github.jokar.zhihudaily.ui.view.common.ListDataView
  * Created by JokAr on 2017/11/4.
  */
 class ListDataViewCallBack<T>(private var view: ListDataView<T>?) : ListDataCallBack<T> {
+
     override fun data(data: ArrayList<T>) {
         view?.loadData(data)
     }
@@ -25,4 +26,5 @@ class ListDataViewCallBack<T>(private var view: ListDataView<T>?) : ListDataCall
         super.onError(e)
         view?.fail(e)
     }
+
 }

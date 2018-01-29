@@ -9,5 +9,7 @@ import dagger.Component
  */
 @Component(modules = arrayOf(AppDatabaseModule::class))
 interface AppDatabaseComponent {
+
     fun appDataBase(): AppDatabaseHelper
+
 }

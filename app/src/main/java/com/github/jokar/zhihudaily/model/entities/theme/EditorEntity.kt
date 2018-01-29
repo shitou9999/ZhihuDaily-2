@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName
  * 编辑
  * Created by JokAr on 2017/7/2.
  */
-data class EditorEntity(@SerializedName("url") var url:String,
-                        @SerializedName("bio") var bio:String,
-                        @SerializedName("id") var id:String,
-                        @SerializedName("avatar") var avatar:String,
-                        @SerializedName("name") var name:String) {
+data class EditorEntity(@SerializedName("url") var url: String,
+                        @SerializedName("bio") var bio: String,
+                        @SerializedName("id") var id: String,
+                        @SerializedName("avatar") var avatar: String,
+                        @SerializedName("name") var name: String) {
 
 
     override fun toString(): String {

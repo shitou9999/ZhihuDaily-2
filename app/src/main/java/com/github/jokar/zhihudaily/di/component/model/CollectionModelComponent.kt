@@ -5,9 +5,11 @@ import com.github.jokar.zhihudaily.model.event.CollectionModel
 import dagger.Component
 
 /**
- * Created by JokAr on 2017/7/4.
+ * @Component 用来将@Inject和@Module联系起来的桥梁，从@Module中获取依赖并将依赖注入给@Inject
  */
 @Component(dependencies = arrayOf(AppDatabaseComponent::class))
 interface CollectionModelComponent {
+
     fun inject(model: CollectionModel)
+
 }

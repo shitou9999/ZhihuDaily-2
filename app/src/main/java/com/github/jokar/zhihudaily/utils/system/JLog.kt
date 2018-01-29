@@ -6,7 +6,7 @@ import com.elvishew.xlog.XLog
  * Created by JokAr on 2017/6/14.
  */
 object JLog {
-    val TAG: String = "ZhihuDaily"
+    val TAG: String = "shitou"
 
     fun d(value: String?) {
         XLog.tag(TAG).d(value ?: "")

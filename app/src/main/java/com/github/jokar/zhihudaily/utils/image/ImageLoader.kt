@@ -18,10 +18,8 @@ import com.github.jokar.zhihudaily.widget.CircleImageView
  */
 object ImageLoader {
 
-
     /**
      * 清除
-
      * @param imageView
      */
     fun clear(context: Context, imageView: ImageView?) {
@@ -36,7 +34,7 @@ object ImageLoader {
 
     fun clearDiskCache(context: Context) {
         //清除硬盘缓存
-        GlideApp.get(context).clearDiskCache();
+        GlideApp.get(context).clearDiskCache()
     }
 
     fun clearCache(context: Context) {

@@ -5,7 +5,11 @@ import android.text.TextUtils
 
 
 /**
- * Created by JokAr on 2017/6/30.
+ * 因为sql中不能插入数组这样类型数据，就需要使用到了类型转换器了,这里使用了TypeConverters；
+ * 关于写类型转换器类会与java不同
+ * 【坑2】类型转换器使用object 类是不行的，使用普通的class类就可以了；否则生成文件里会报错
+ * 【坑2】，看教程里类型转换器是使用的静态方法的，但是在ktolin若你想使用object 类是不行的，
+ * 使用普通的class类就可以了；否则生成文件里会报错
  */
 class Converters {
     @TypeConverter

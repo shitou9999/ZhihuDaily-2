@@ -6,7 +6,7 @@ import dagger.Provides
 import retrofit2.Retrofit
 
 /**
- * Created by JokAr on 2017/6/21.
+ * @Provide: 在modules中，我们定义的方法是用这个注解，以此来告诉Dagger我们想要构造对象并提供这些依赖
  */
 @Module
 class BeforeModule {

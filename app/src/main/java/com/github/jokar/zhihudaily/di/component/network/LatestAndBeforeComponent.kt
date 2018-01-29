@@ -15,5 +15,7 @@ import dagger.Component
         AppDatabaseComponent::class),
         modules = arrayOf(LatestModule::class, BeforeModule::class))
 interface LatestAndBeforeComponent {
+
     fun inject(model: MainFragmentModel)
+
 }

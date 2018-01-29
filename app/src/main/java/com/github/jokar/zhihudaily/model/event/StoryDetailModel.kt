@@ -36,7 +36,6 @@ class StoryDetailModel(var activity: AppCompatActivity) {
     lateinit var retrofit: Retrofit
     @Inject
     lateinit var service: NewsServices
-
     //room
     @Inject
     lateinit var mDatabaseHelper: AppDatabaseHelper
@@ -70,28 +69,25 @@ class StoryDetailModel(var activity: AppCompatActivity) {
                 mDatabaseHelper.insertStory(story)
             }
             e.onNext(story)
-        })
-                .filter { story ->
-                    //判断本地是否有详细数据
-                    if (!TextUtils.isEmpty(story.body)) {
-                        callBack.data(story)
-                        callBack.onComplete()
-                        return@filter false
-                    }
-                    return@filter true
-                }
-                //没有从网络获取
-                .flatMap { service.getNews(id) }
-                .doOnDispose {
-                    JLog.d("getStoryDetail dispose")
-                }
-                .bindUntilEvent(activity, Lifecycle.Event.ON_DESTROY)
+        }).filter { story ->
+            //判断本地是否有详细数据
+            if (!TextUtils.isEmpty(story.body)) {
+                callBack.data(story)
+                callBack.onComplete()
+                return@filter false
+            }
+            return@filter true
+        }.flatMap {
+            //没有从网络获取
+            service.getNews(id)
+        }.doOnDispose {
+            JLog.d("getStoryDetail dispose")
+        }.bindUntilEvent(activity, Lifecycle.Event.ON_DESTROY)
                 .compose(SchedulersUtil.applySchedulersIO())
                 .map { (body, image_source, title, image, share_url, js, images, _, css) ->
                     //添加格式到body
                     var story = mDatabaseHelper.getStory(id)
-                    story.body = HtmlUtil.createHtmlData(css,
-                            js, body)
+                    story.body = HtmlUtil.createHtmlData(css, js, body)
                     story.image_source = image_source
                     story.image = image
                     story.share_url = share_url
@@ -114,7 +110,7 @@ class StoryDetailModel(var activity: AppCompatActivity) {
      */
     fun updateStory(story: StoryEntity) {
         Observable.just(story)
-                .bindUntilEvent(activity,Lifecycle.Event.ON_DESTROY)
+                .bindUntilEvent(activity, Lifecycle.Event.ON_DESTROY)
                 .subscribeOn(Schedulers.newThread())
                 .unsubscribeOn(Schedulers.newThread())
                 .subscribe { mDatabaseHelper.updateStory(story) }

@@ -7,6 +7,7 @@ import com.github.jokar.zhihudaily.ui.view.common.SingleDataView
  * Created by JokAr on 2017/11/4.
  */
 class SingleDataViewCallBack<T>(private var view: SingleDataView<T>?) : SingleDataCallBack<T> {
+
     override fun data(data: T) {
         view?.loadData(data)
     }
@@ -25,4 +26,5 @@ class SingleDataViewCallBack<T>(private var view: SingleDataView<T>?) : SingleDa
         super.onError(e)
         view?.fail(e)
     }
+
 }

@@ -35,8 +35,7 @@ abstract class RecyclerOnScrollListener(recyclerView: RecyclerView) : RecyclerVi
                     previousTotal = totalItemCount
                 }
             }
-            if (!loading
-                    && visibleItemCount > 0
+            if (!loading && visibleItemCount > 0
                     && lastCompletelyVisiableItemPosition >= totalItemCount - 3) {
 
                 onLoadMore()

@@ -12,7 +12,8 @@ import dagger.android.support.AndroidSupportInjectionModule
 
 
 /**
- * Created by JokAr on 2017/6/15.
+ * @Component: Components从根本上来说就是一个注入器，也可以说是@Inject和@Module的桥梁，它的主要作用就是连接这两个部分
+ * Components可以提供所有定义了的类型的实例，比如：我们必须用@Component注解一个接口然后列出所有的
  */
 @Component(modules = arrayOf(
         AndroidSupportInjectionModule::class,

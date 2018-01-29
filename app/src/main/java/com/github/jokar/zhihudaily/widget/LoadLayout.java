@@ -28,11 +28,11 @@ public class LoadLayout extends LinearLayout {
     public RetryListener retryListener;
 
     public LoadLayout(Context context) {
-        this(context, null);
+        super(context,null);
     }
 
     public LoadLayout(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs,0);
     }
 
     public LoadLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {

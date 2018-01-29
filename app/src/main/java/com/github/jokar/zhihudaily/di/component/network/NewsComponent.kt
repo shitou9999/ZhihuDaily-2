@@ -7,12 +7,14 @@ import com.github.jokar.zhihudaily.model.event.StoryDetailModel
 import dagger.Component
 
 /**
- * Created by JokAr on 2017/6/25.
+ * @Component 注解的接口连接依赖的提供者 @Component(modules = {VehicleModule.class})
  */
 @UserScope
 @Component(dependencies = arrayOf(NetworkComponent::class,
         AppDatabaseComponent::class),
         modules = arrayOf(NewsModule::class))
 interface NewsComponent {
+
     fun inject(model: StoryDetailModel)
+
 }

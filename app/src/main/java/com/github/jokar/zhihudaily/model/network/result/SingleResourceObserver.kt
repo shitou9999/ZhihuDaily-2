@@ -7,7 +7,7 @@ import io.reactivex.observers.ResourceObserver
  * Created by JokAr on 2017/6/20.
  */
 class SingleResourceObserver<T>(private var callBack: SingleDataCallBack<T>) : ResourceObserver<T>() {
-
+//class ListResourceObserver<T>(var callBack: ListDataCallBack<T>) : ResourceObserver<ArrayList<T>>() {
 
     override fun onStart() {
         super.onStart()

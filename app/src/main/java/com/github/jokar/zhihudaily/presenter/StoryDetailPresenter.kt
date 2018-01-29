@@ -8,18 +8,20 @@ import com.github.jokar.zhihudaily.ui.view.common.SingleDataView
 import javax.inject.Inject
 
 /**
- * Created by JokAr on 2017/6/25.
+ * 详情Presenter
  */
 class StoryDetailPresenter @Inject constructor(var model: StoryDetailModel?,
-                                               var view: SingleDataView<StoryEntity>?)
-    : BasePresenter {
+                                               var view: SingleDataView<StoryEntity>?) : BasePresenter {
 
+    /**
+     * Model中获取详情
+     */
     fun getStoryDetail(id: Int) {
         model?.getStoryDetail(id, SingleDataViewCallBack(view))
     }
 
     /**
-     * 更新story
+     * Model中更新story
      */
     fun updateStory(story: StoryEntity) {
         model?.updateStory(story)

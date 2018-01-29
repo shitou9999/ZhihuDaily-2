@@ -17,10 +17,9 @@ data class StoryDetail(@SerializedName("body") var body: String,
                        @SerializedName("images") var images: Array<String>,
                        @SerializedName("id") var id: Int,
                        @SerializedName("css") var css: Array<String>) : Parcelable {
+
     var like: Int = 0
-
     var collection: Int = 0
-
 
     companion object {
         @JvmField

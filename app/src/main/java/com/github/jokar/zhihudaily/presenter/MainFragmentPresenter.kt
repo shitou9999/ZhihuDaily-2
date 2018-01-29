@@ -17,26 +17,28 @@ import javax.inject.Inject
  */
 class MainFragmentPresenter @Inject constructor(var model: MainFragmentModel?,
                                                 var view: StoryView?) : BasePresenter {
-
+    /**
+     * Model中获取最新story
+     */
     fun getLatestStory() {
-        model?.getLatestStory( SingleDataViewCallBack(view))
+        model?.getLatestStory(SingleDataViewCallBack(view))
     }
 
+    /**
+     * Model中获取过往的story
+     */
     fun getNextDayStory(date: Long) {
+        model?.getBeforeStory(date, object : ListDataCallBack<StoryEntity> {
+            override fun data(data: ArrayList<StoryEntity>) {
+                view?.loadMoreData(data)
+            }
 
-        model?.getBeforeStory(date,
-                object : ListDataCallBack<StoryEntity> {
+            override fun onError(e: Throwable) {
+                super.onError(e)
+                view?.loadMoreFail(e)
+            }
 
-                    override fun data(data: ArrayList<StoryEntity>) {
-                        view?.loadMoreData(data)
-                    }
-
-                    override fun onError(e: Throwable) {
-                        super.onError(e)
-                        view?.loadMoreFail(e)
-                    }
-
-                })
+        })
     }
 
     /**

@@ -16,7 +16,9 @@ import javax.inject.Inject
 class SettingPresenter @Inject constructor(var model: SettingModel?,
                                            var view: SettingView?) : BasePresenter {
 
-
+    /**
+     * Model中获取图片缓存
+     */
     fun getImageCacheSize(@NonNull lifecycle: LifecycleOwner) {
         model?.getImageCacheSize(lifecycle, object : SingleDataCallBack<String> {
             override fun data(data: String) {
@@ -25,6 +27,9 @@ class SettingPresenter @Inject constructor(var model: SettingModel?,
         })
     }
 
+    /**
+     * Model中清除图片缓存
+     */
     fun clearImageCache() {
         model?.clearImageCache(object : SingleDataCallBack<String> {
             override fun data(data: String) {

@@ -13,9 +13,10 @@ import javax.inject.Inject
 class CollectionPresenter @Inject constructor(var model: CollectionModel?,
                                               var view: ListDataView<StoryEntity>?) : BasePresenter {
 
-
+    /**
+     * 获取所有收藏的story
+     */
     fun getCollections() {
-
         model?.getCollectionsStories(ListDataViewCallBack(view))
     }
 
