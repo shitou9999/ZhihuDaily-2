@@ -5,6 +5,33 @@ anko 是一款结合kotlin语言抛弃布局xml的工具，使用他就可以不
 var edit: EditText? = null
 var string = edit?.text.toString()
 
+public var name:String = "yoxin"
+private var name2 = "youxin2"//表示 name2 不能为空他是必须有值的
+protected var name3:String? = null//表示的是name3 可以为null也可以不为空
+public var id:Int = 1
+private var id2 = 2
+protected var id3:Int? = null
+
+
+//类型后面加?表示可为空
+var age: String? = "23"
+//抛出空指针异常
+val ages = age!!.toInt()
+//不做处理返回 null
+val ages1 = age?.toInt()
+//age为空返回-1
+val ages2 = age?.toInt() ?: -1
+
+
+abstract var type:String
+//abstract  // 在自身不初始化，需要子类进行初始化，不能省略类型。
+
+toInt(): Int
+ Integer.parseInt("youxin")
+
+ // 函数表达式
+ val max = if (a > b) a else b
+
 Kotlin的函数可以作为参数，写callback的时候，可以不用interface了
 // 声明一个callback
 var callback: (()->Unit)? = null
